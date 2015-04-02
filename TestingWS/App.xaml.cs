@@ -15,25 +15,47 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.ApplicationInsights;
+using Microsoft.WindowsAzure.MobileServices;
+using TestingApp.DataModels;
+using TestingApp.Models;
 
-// The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
 
 namespace TestingWS
 {
-    /// <summary>
-    /// Provides application-specific behavior to supplement the default Application class.
-    /// </summary>
+    
     sealed partial class App : Application
     {
-        /// <summary>
-        /// Allows tracking page views, exceptions and other telemetry through the Microsoft Application Insights service.
-        /// </summary>
+       
         public static TelemetryClient TelemetryClient;
 
-        /// <summary>
-        /// Initializes the singleton application object.  This is the first line of authored code
-        /// executed, and as such is the logical equivalent of main() or WinMain().
-        /// </summary>
+
+
+        //Declerations
+        public static MobileServiceClient MobileService = new MobileServiceClient(
+       "https://gymnasio.azure-mobile.net/",
+       "hyLxEreGFGZwcHxFQNQmccdTAAbVEa32"
+   );
+        public static MobileServiceCollection<User, User> _userData;
+        public static User _AppUser;
+        public static Post _PostData;
+        public static User _SignUpUser;
+        public static Article _SelectedArticle;
+        public static string ExcerciseType;
+        public static Session SessionData;
+        public static TimeSpan SessionTime;
+        public static bool _isAchieved;
+        public static string _nameOfAchi;
+        public static Achievements _achi;
+        public static bool IsSessionDataAvailable = false;
+
+
+
+
+
+
+
+
+
         public App()
         {
             TelemetryClient = new TelemetryClient();
@@ -42,11 +64,6 @@ namespace TestingWS
             this.Suspending += OnSuspending;
         }
 
-        /// <summary>
-        /// Invoked when the application is launched normally by the end user.  Other entry points
-        /// will be used such as when the application is launched to open a specific file.
-        /// </summary>
-        /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
 
@@ -59,23 +76,17 @@ namespace TestingWS
 
             Frame rootFrame = Window.Current.Content as Frame;
 
-            // Do not repeat app initialization when the Window already has content,
-            // just ensure that the window is active
             if (rootFrame == null)
             {
-                // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
-                // Set the default language
                 rootFrame.Language = Windows.Globalization.ApplicationLanguages.Languages[0];
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
-                    //TODO: Load state from previously suspended application
                 }
 
-                // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
             }
 
