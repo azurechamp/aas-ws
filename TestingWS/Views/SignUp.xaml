@@ -1,0 +1,44 @@
+﻿<Page
+    x:Class="TestingWS.Views.SignUp"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TestingWS.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="169*"/>
+            <RowDefinition Height="599*"/>
+        </Grid.RowDefinitions>
+        <AppBarButton HorizontalAlignment="Left" Icon="Back" Label="" Margin="4,65,0,0" VerticalAlignment="Top" Click="AppBarButton_Click" Height="88" Width="100"/>
+        <TextBlock HorizontalAlignment="Left" Style="{StaticResource HeaderTextBlockStyle}" TextWrapping="Wrap" Text="Sign Up" VerticalAlignment="Top" Height="48" Width="565" Margin="111,79,0,0" />
+        <StackPanel Margin="154,0,0,0" Grid.Row="1" HorizontalAlignment="Left" Width="523" Height="554" VerticalAlignment="Top">
+            <TextBlock Text="Name" Style="{StaticResource SubheaderTextBlockStyle}" Margin="0,0,0,10"/>
+            <TextBox x:Name="tbx_Name"/>
+            <TextBlock Text="User Name" Style="{StaticResource SubheaderTextBlockStyle}" Margin="0,0,0,10" />
+            <TextBox x:Name="tbx_UserName"/>
+            <TextBlock Text="Email" Style="{StaticResource SubheaderTextBlockStyle}" Margin="0,0,0,10" />
+            <TextBox x:Name="tbx_Email"/>
+            <TextBlock Text="Password" Style="{StaticResource SubheaderTextBlockStyle}" Margin="0,0,0,10" />
+            <PasswordBox x:Name="tbx_Password"/>
+            <TextBlock Text="Age" Style="{StaticResource SubheaderTextBlockStyle}" Margin="0,0,0,10"/>
+            <TextBox x:Name="tbx_Age"/>
+            <TextBlock Text="Height" Style="{StaticResource SubheaderTextBlockStyle}" Margin="0,0,0,10" />
+            <TextBox x:Name="tbx_Height"/>
+            <TextBlock Text="Weight" Style="{StaticResource SubheaderTextBlockStyle}" Margin="0,0,0,10" />
+            <TextBox x:Name="tbx_Weight"/>
+
+        </StackPanel>
+        <StackPanel Margin="0,0,217,0" HorizontalAlignment="Right" Width="413" Height="383" VerticalAlignment="Top" Grid.Row="1">
+            <TextBlock Text="Pet Name" Style="{StaticResource SubheaderTextBlockStyle}" Margin="0,0,0,10"/>
+            <TextBox x:Name="tbx_PetName"/>
+            <TextBlock Text="Question" Style="{StaticResource SubheaderTextBlockStyle}" Margin="0,0,0,10" />
+            <TextBox x:Name="tbx_Question"/>
+            <TextBlock Text="Answer" Style="{StaticResource SubheaderTextBlockStyle}" Margin="0,0,0,10" />
+            <TextBox x:Name="tbx_Answer"/>
+            <Button x:Name="btn_signUp"  Height="43" Width="211" Content="Sign Up" Margin="0,30,0,0" Click="btn_signUp_Click" />
+        </StackPanel>
+    </Grid>
+</Page>

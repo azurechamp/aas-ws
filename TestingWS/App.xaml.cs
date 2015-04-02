@@ -18,6 +18,7 @@ using Microsoft.ApplicationInsights;
 using Microsoft.WindowsAzure.MobileServices;
 using TestingApp.DataModels;
 using TestingApp.Models;
+using Windows.UI.Popups;
 
 
 namespace TestingWS
@@ -51,6 +52,11 @@ namespace TestingWS
 
 
 
+        public static async void MessageCustom(string title, string details)
+        {
+
+            await new MessageDialog(details, title).ShowAsync();
+        }
 
 
 

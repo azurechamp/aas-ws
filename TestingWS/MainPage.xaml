@@ -26,7 +26,7 @@
             <PasswordBox  Margin="10,10,0,0" x:Name="tbx_Password" />
             <StackPanel Orientation="Horizontal">
             <Button x:Name="btn_signIn" Click="btn_signIn_Click" Margin="10,10,0,0" Content="Sign In" IsEnabled="False"/>
-            <Button Margin="10,10,0,0" Content="Sign Up"/>
+            <Button Margin="10,10,0,0" Content="Sign Up" Click="Button_Click"/>
 
             </StackPanel>
         </StackPanel>

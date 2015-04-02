@@ -103,5 +103,10 @@ namespace TestingWS
 
             await new MessageDialog(details, title).ShowAsync();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(SignUp)); 
+        }
     }
 }
