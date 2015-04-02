@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using TestingApp.Models;
@@ -23,34 +24,33 @@ namespace TestingApp.ViewModels
         }
 
 
-        public void GetJson() 
+        public async void GetJson() 
         {
-            try
-            {
-                WebClient webClient = new WebClient();
-                webClient.DownloadStringAsync(new Uri("http://hello987.azurewebsites.net/store.html"));
-                webClient.DownloadStringCompleted += webClient_DownloadStringCompleted;
-            }
-            catch (Exception exc) 
-            {
-            
-            
-            }
-        }
-        void webClient_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
-        {
-            var rootObject = JsonConvert.DeserializeObject<RootStore>(e.Result);
-            foreach (Item everyItemInList in rootObject.items) 
-            {
-                if (everyItemInList.tag.Equals("food"))
+
+              try
+              {
+                var client = new HttpClient();
+                var response = await client.GetAsync("http://hello987.azurewebsites.net/store.html");
+                var result = await response.Content.ReadAsStringAsync();
+
+                var rootObject = JsonConvert.DeserializeObject<RootStore>(result);
+
+                foreach (Item everyItemInList in rootObject.items)
                 {
-                    obs_Food.Add(everyItemInList);
+                    if (everyItemInList.tag.Equals("food"))
+                    {
+                        obs_Food.Add(everyItemInList);
+                    }
+                    if (everyItemInList.tag.Equals("drink"))
+                    {
+                        obs_Drink.Add(everyItemInList);
+
+                    }
                 }
-                if (everyItemInList.tag.Equals("drink"))
-                {
-                    obs_Drink.Add(everyItemInList);
-                    
-                }
+
+            }
+            catch (Exception exc)
+            {
             }
         }
     }
