@@ -1,0 +1,42 @@
+﻿<Page
+    x:Class="TestingWS.Views.LeaderBoard"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TestingWS.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <DataTemplate x:Key="ItemTemplate">
+            <Grid Height="161" Width="141" Margin="7,8,0,0">
+                <Rectangle HorizontalAlignment="Left" Height="160" VerticalAlignment="Top" Width="141" Fill="#FF363636"/>
+                <TextBlock x:Name="tbl_Name" Text="{Binding Name}" Margin="4,0,0,134" FontWeight="Bold"/>
+                <TextBlock x:Name="tbl_PetName" Text="{Binding PetName}" Margin="4,27,0,112" Foreground="#FFBBBBBB"/>
+                <TextBlock x:Name="tbl_Health" Text="{Binding HealthPoints}" Margin="4,54,0,73" Foreground="#FFF59C00" FontWeight="Bold" FontSize="24"/>
+                <TextBlock x:Name="tbl_Stars" Text="{Binding Stars}" Margin="4,88,0,42" Foreground="#FFFDDB00" FontWeight="Bold" FontSize="24"/>
+                <Rectangle Fill="#FF343434" Height="41" Margin="0,120,22,0" VerticalAlignment="Top"/>
+                <TextBlock Height="32" Margin="0,119,101,0" TextWrapping="Wrap" Text=" ☆" VerticalAlignment="Top" Foreground="#FFFFF302" FontSize="26.667"/>
+                <TextBlock HorizontalAlignment="Left" Height="19" Margin="32,132,0,0" TextWrapping="Wrap" Text="leader" VerticalAlignment="Top" Width="43" FontStyle="Italic" FontSize="12"/>
+                <Rectangle Fill="#FFF59C00" HorizontalAlignment="Left" Height="40" Margin="102,120,0,0" VerticalAlignment="Top" Width="38"/>
+            </Grid>
+        </DataTemplate>
+        <ItemsPanelTemplate x:Key="ItemsPanelTemplate1">
+            <WrapGrid Orientation="Horizontal" />
+        </ItemsPanelTemplate>
+
+    </Page.Resources>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="117*"/>
+            <ColumnDefinition Width="566*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="73*"/>
+            <RowDefinition Height="183*"/>
+        </Grid.RowDefinitions>
+        <AppBarButton HorizontalAlignment="Left" Icon="Back" Label="" Margin="4,65,0,0" VerticalAlignment="Top" Click="AppBarButton_Click" Height="88" Width="100"/>
+        <TextBlock HorizontalAlignment="Left" Style="{StaticResource HeaderTextBlockStyle}" TextWrapping="Wrap" Text="Leader Board" VerticalAlignment="Top" Height="48" Width="565" Margin="111,79,0,0" Grid.ColumnSpan="2" />
+        <ListView x:Name="lbx_LeaderBoardShow" HorizontalAlignment="Left" Height="486" ItemTemplate="{StaticResource ItemTemplate}" VerticalAlignment="Top" Width="947" ItemsPanel="{StaticResource ItemsPanelTemplate1}" Grid.Row="1" Grid.Column="1"/>
+
+    </Grid>
+</Page>
