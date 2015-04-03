@@ -7,8 +7,10 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using TestingApp.DataModels;
 using TestingApp.Models;
+using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -45,8 +47,164 @@ namespace TestingWS.Views
         {
             this.InitializeComponent();
             GetArticlesData();
+
+            //GetNearbyData();
+            
+            GetLocation();
         }
 
+
+        private async void GetLocation()
+        {
+            Geolocator geo = new Geolocator();
+            // await this because we don't know hpw long it will take to complete and we don't want to block the UI
+           geo.DesiredAccuracyInMeters = 50;
+
+           try
+           {
+               Geoposition pos = await geo.GetGeopositionAsync(); // get the raw geoposition data
+
+               latitude = pos.Coordinate.Point.Position.Latitude; // current latitude
+               longitude = pos.Coordinate.Point.Position.Longitude;
+               GetNearbyData();
+           }
+           catch (Exception ex)
+           {
+               if ((uint)ex.HResult == 0x80004004)
+               {
+                   // the application does not have the right capability or the location master switch is off
+                   App.MessageCustom("Location Disabled", "We are unable to determine your location");
+               }
+           
+               {
+                   latitude = 74.320855;
+                   longitude = 31.514255;
+                   GetNearbyData();
+               }
+           }
+          
+        }
+
+
+        #region AZURE
+         private async Task RefreshTodoItems()
+        {
+            MobileServiceInvalidOperationException exception = null;
+            try
+            {
+                    items = await todoTable
+                    .Where(todoItem => todoItem.isDeleted == false)
+                    .ToCollectionAsync();
+
+                    Achitems = await achivTable
+                .Where(todoItem => todoItem.isDeleted == false)
+                  .ToCollectionAsync();
+            }
+            catch (MobileServiceInvalidOperationException e)
+            {
+                exception = e;
+            }
+
+            if (exception != null)
+            {
+                App.MessageCustom("Internet :(","Can't Connect");
+            }
+            else
+            {
+                lbx_Posts.ItemsSource = items;
+                foreach (Achievements ach in Achitems) 
+                {
+                    if (ach.AchievementBy.Equals(App._AppUser.Id)) 
+                    {
+                        obs_achvments.Add(ach);
+                    }
+                }
+
+
+                lbx_Achv.ItemsSource = obs_achvments;
+            }
+
+        }
+
+     
+#endregion
+        #region LifeCycle Events
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            //Selection Changed Route Detached
+            //lbx_articles.SelectionChanged -= lbx_articles_SelectionChanged;
+            //lbx_nearby.SelectionChanged -= lbx_nearby_SelectionChanged;
+            //lbx_Posts.SelectionChanged -= lbx_Posts_SelectionChanged;
+
+        }
+
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        {
+
+            tbl_Stars.Text = App._AppUser.Stars + "";
+            tbl_HealthPoints.Text = App._AppUser.HealthPoints + "";
+            tbl_PetName.Text = App._AppUser.PetName;
+
+            if (App.IsSessionDataAvailable == true)
+            {
+                tbl_avgspeed.Text = App.SessionData.AverageSpeed;
+                tbl_calories.Text = App.SessionData.Calories;
+                tbl_distance.Text = App.SessionData.Distance;
+                tbl_pace.Text = App.SessionData.Pace;
+                tbl_time.Text = App.SessionTime.ToString(@"hh\:mm\:ss");
+            }
+            
+            //Selection Changed Route Attached
+            //lbx_articles.SelectionChanged += lbx_articles_SelectionChanged;
+            //lbx_nearby.SelectionChanged += lbx_nearby_SelectionChanged;
+            //lbx_Posts.SelectionChanged += lbx_Posts_SelectionChanged;
+
+
+            try
+            {
+                await RefreshTodoItems();
+            }
+            catch (Exception exc)
+            {
+            }
+
+        }
+       
+        #endregion
+        public async void GetNearbyData() 
+        {
+            try
+            {
+                var client = new HttpClient();
+                var response = await client.GetAsync("https://api.foursquare.com/v2/venues/search?client_id=4UKK0YO0NDIKPWGOELRGU5TR2PZNQXOLJ3N42KKQRUX0DXLM&client_secret=XW1NITAJESHVCB3PTDPDMXJNALMGDDI21VYMX1Z5GSQWIVBU&v=20130815%20&ll=40.7,-74&query=park");
+                var result = await response.Content.ReadAsStringAsync();
+
+                var rootObject = JsonConvert.DeserializeObject<RootParks>(result);
+
+                foreach (Venue ven in rootObject.response.venues)
+                {
+                    vene nearbyVar = new vene();
+                    nearbyVar.name = ven.name;
+                    nearbyVar.country = ven.location.country;
+                    nearbyVar.city = ven.location.city;
+                    nearbyVar.phone = ven.contact.phone;
+                    nearbyVar.distance = ven.location.distance;
+                    nearbyVar.url = ven.url;
+                    nearbyVar.lat = ven.location.lat;
+                    nearbyVar.lng = ven.location.lng;
+                    nearbyVar.checkinsCount = ven.stats.checkinsCount;
+                    obs_NearbyParks.Add(nearbyVar);
+
+                    
+                }
+
+                lbx_nearby.ItemsSource = obs_NearbyParks;
+                //bind the observable collection here
+            }
+            catch (Exception exc)
+            {
+            }
+        }
 
         public async void GetArticlesData()
         {
@@ -100,6 +258,11 @@ namespace TestingWS.Views
         private void ScheduleExerciseTapped(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(ScheduleExercise));
+        }
+
+        private void searchTapped(object sender, TappedRoutedEventArgs e)
+        {
+            lbx_Posts.ItemsSource = items.Where(x => x.PostTitle.Contains(tbx_search.Text));
         }
     }
 }

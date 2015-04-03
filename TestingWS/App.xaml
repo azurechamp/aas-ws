@@ -1,7 +1,14 @@
 ﻿<Application
-    x:Class="TestingWS.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:TestingWS">
+    xmlns:local="using:TestingWS" xmlns:SampleData="using:Blend.SampleData.ArticlesSampleData" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:SampleData1="using:Blend.SampleData.SampleDataParks" xmlns:SampleData2="using:Blend.SampleData.achievements" mc:Ignorable="d"
+    x:Class="TestingWS.App"
+    >
+
+	<Application.Resources>
+		<SampleData2:achievements x:Key="achievements" d:IsDataSource="True"/>
+		<SampleData1:SampleDataParks x:Key="SampleDataParks" d:IsDataSource="True"/>
+		<SampleData:ArticlesSampleData x:Key="ArticlesSampleData" d:IsDataSource="True"/>
+	</Application.Resources>
 
 </Application>
