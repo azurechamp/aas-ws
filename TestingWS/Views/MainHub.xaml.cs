@@ -264,5 +264,7 @@ namespace TestingWS.Views
         {
             lbx_Posts.ItemsSource = items.Where(x => x.PostTitle.Contains(tbx_search.Text));
         }
+
+       
     }
 }
