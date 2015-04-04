@@ -57,7 +57,7 @@ namespace TestingWS
 
             await new MessageDialog(details, title).ShowAsync();
         }
-
+    
 
 
 

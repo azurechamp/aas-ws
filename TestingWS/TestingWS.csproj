@@ -108,6 +108,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CommentUserControl.xaml.cs">
+      <DependentUpon>CommentUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DataModels\Achievements.cs" />
     <Compile Include="DataModels\Comment.cs" />
     <Compile Include="DataModels\Post.cs" />
@@ -137,6 +140,9 @@
     <Compile Include="Views\MainHub.xaml.cs">
       <DependentUpon>MainHub.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PostView.xaml.cs">
+      <DependentUpon>PostView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Profile.xaml.cs">
       <DependentUpon>Profile.xaml</DependentUpon>
     </Compile>
@@ -151,6 +157,9 @@
     </Compile>
     <Compile Include="Views\UpdateProfile.xaml.cs">
       <DependentUpon>UpdateProfile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewArticle.xaml.cs">
+      <DependentUpon>ViewArticle.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -226,6 +235,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="CommentUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -250,6 +263,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\PostView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Profile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -267,6 +284,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UpdateProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ViewArticle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

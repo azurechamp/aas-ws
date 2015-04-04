@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -51,8 +52,66 @@ namespace TestingWS.Views
             //GetNearbyData();
             
             GetLocation();
+            lbx_articles.SelectionChanged += lbx_articles_SelectionChanged;
+            lbx_nearby.SelectionChanged += lbx_nearby_SelectionChanged;
+            lbx_Posts.SelectionChanged+=lbx_Posts_SelectionChanged;
         }
 
+          async void lbx_nearby_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            try
+            {
+                string uriToLaunch = @"bingmaps:?cp=" + (lbx_nearby.SelectedItem as vene).lat + "~-" + (lbx_nearby.SelectedItem as vene).lng + "&lvl=10";
+                var uri = new Uri(uriToLaunch);
+
+                // Launch the URI
+                var success = await Windows.System.Launcher.LaunchUriAsync(uri);
+                if (success)
+                {
+                    // URI launched
+                }
+                else
+                {
+                    // URI launch failed
+                }
+            }
+            catch (Exception exc) 
+            {
+
+                Debug.WriteLine(exc.Message);
+            }
+
+        }
+
+        void lbx_articles_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            App._SelectedArticle = lbx_articles.SelectedItem as Article;
+            if (lbx_articles.SelectedIndex == -1)
+            {
+            }
+            else
+            {
+                this.Frame.Navigate(typeof(ViewArticle));
+                lbx_articles.SelectedIndex = -1;
+            }
+        }
+
+
+        void lbx_Posts_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            App._PostData = lbx_Posts.SelectedItem as Post;
+            if (lbx_Posts.SelectedIndex == -1)
+            {
+
+            }
+            else
+            {
+               this.Frame.Navigate(typeof(PostView));
+                lbx_Posts.SelectedIndex = -1;
+            }
+
+        }
 
         private async void GetLocation()
         {
@@ -263,6 +322,11 @@ namespace TestingWS.Views
         private void searchTapped(object sender, TappedRoutedEventArgs e)
         {
             lbx_Posts.ItemsSource = items.Where(x => x.PostTitle.Contains(tbx_search.Text));
+        }
+
+        private void profiletapped(object sender, TappedRoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Profile));
         }
 
        
