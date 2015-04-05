@@ -30,6 +30,7 @@ namespace TestingWS.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
           //Sort by Stars
+            App._userData.OrderBy(User => User.Stars);
             lbx_LeaderBoardShow.ItemsSource = App._userData;
         }
 
@@ -38,4 +39,6 @@ namespace TestingWS.Views
             this.Frame.Navigate(typeof(MainHub));
         }
     }
+
+   
 }

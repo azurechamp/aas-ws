@@ -329,6 +329,11 @@ namespace TestingWS.Views
             this.Frame.Navigate(typeof(Profile));
         }
 
+        private void AppBarButton_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(CreatePost));
+        }
+
        
     }
 }

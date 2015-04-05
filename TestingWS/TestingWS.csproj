@@ -134,6 +134,9 @@
       <DependentUpon>SampleDataParks.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\StorePageView Model.cs" />
+    <Compile Include="Views\CreatePost.xaml.cs">
+      <DependentUpon>CreatePost.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LeaderBoard.xaml.cs">
       <DependentUpon>LeaderBoard.xaml</DependentUpon>
     </Compile>
@@ -254,6 +257,10 @@
     <Page Include="SampleData\SampleDataParks\SampleDataParks.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CreatePost.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LeaderBoard.xaml">
       <SubType>Designer</SubType>
