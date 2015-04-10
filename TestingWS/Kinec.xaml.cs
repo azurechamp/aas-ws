@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -7,11 +8,16 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using TestingWS.Views;
 using Windows.ApplicationModel.Resources;
+using Windows.Graphics.Display;
+using Windows.Graphics.Imaging;
+using Windows.Storage;
+using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
 using WindowsPreview.Kinect;
+using System.Threading;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -334,6 +340,54 @@ namespace TestingWS
         {
             this.Frame.Navigate(typeof(MainHub));
         }
+
+       
+        private async void AppBarButton_Click_1(object sender, RoutedEventArgs e)
+        {
+            GetReady.Begin();
+            await Task.Delay(new TimeSpan(0,0,5));
+           
+
+             // Render to an image at the current system scale and retrieve pixel contents
+            RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap();
+            await renderTargetBitmap.RenderAsync(CompositeImage);
+            var pixelBuffer = await renderTargetBitmap.GetPixelsAsync();
+
+            var savePicker = new FileSavePicker();
+            savePicker.DefaultFileExtension = ".png";
+            savePicker.FileTypeChoices.Add(".png", new List<string> { ".png" });
+            savePicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            savePicker.SuggestedFileName = "snapshot.png";
+
+            // Prompt the user to select a file
+            var saveFile = await savePicker.PickSaveFileAsync();
+
+            // Verify the user selected a file
+            if (saveFile == null)
+                return;
+
+            // Encode the image to the selected file on disk
+            using (var fileStream = await saveFile.OpenAsync(FileAccessMode.ReadWrite))
+            {
+                var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, fileStream);
+
+                encoder.SetPixelData(
+                    BitmapPixelFormat.Bgra8,
+                    BitmapAlphaMode.Ignore,
+                    (uint)renderTargetBitmap.PixelWidth,
+                    (uint)renderTargetBitmap.PixelHeight,
+                    DisplayInformation.GetForCurrentView().LogicalDpi,
+                    DisplayInformation.GetForCurrentView().LogicalDpi,
+                    pixelBuffer.ToArray());
+
+                await encoder.FlushAsync();
+            }
+
+           App.MessageCustom("Image Saved", "Your Image has been successfully Saved!");
+        
+        }
+
+    
 
     }
     [Guid("905a0fef-bc53-11df-8c49-001e4fc686da"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
