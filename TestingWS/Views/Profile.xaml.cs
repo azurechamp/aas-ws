@@ -81,9 +81,14 @@ namespace TestingWS.Views
             tbx_PetName.Text = App._AppUser.PetName;
             tbx_Question.Text = App._AppUser.Question;
             tbx_Answer.Text = App._AppUser.Answer;
+            try
+            {
+                await RefreshTodoItems();
+            }
+            catch (Exception exc)
+            {
 
-            await RefreshTodoItems();
-
+            }
 
         }
 

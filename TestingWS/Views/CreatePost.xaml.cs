@@ -36,8 +36,15 @@ namespace TestingWS.Views
 
          protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            await RefreshTodoItems();
-        }
+            try
+            {
+                await RefreshTodoItems();
+            }
+            catch (Exception exc)
+            {
+
+            }
+         }
         private async Task RefreshTodoItems()
         {
             MobileServiceInvalidOperationException exception = null;

@@ -1,6 +1,7 @@
 ﻿using Microsoft.WindowsAzure.MobileServices;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -9,6 +10,7 @@ using TestingApp.DataModels;
 using TestingWS.Views;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Notifications;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -39,7 +41,15 @@ namespace TestingWS
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            await RefreshTodoItems();
+            try
+            {
+                await RefreshTodoItems();
+
+            }
+            catch (Exception exc) 
+            {
+                Debug.WriteLine(exc.Message);
+            }
         }
 
         private async Task RefreshTodoItems()
@@ -86,7 +96,6 @@ namespace TestingWS
             {
 
                 this.Frame.Navigate(typeof(MainHub));
-                
                 _userExist = false;
             }
             else

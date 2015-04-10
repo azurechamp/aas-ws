@@ -1,0 +1,31 @@
+﻿<Page
+    x:Class="TestingWS.Kinec"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TestingWS"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+     >
+
+    <Page.Resources>
+        <SolidColorBrush x:Key="MediumGreyBrush" Color="#ff6e6e6e" />
+        <SolidColorBrush x:Key="KinectPurpleBrush" Color="#ff52318f" />
+        <SolidColorBrush x:Key="KinectBlueBrush" Color="#ff00BCF2" />
+    </Page.Resources>
+
+    <Grid x:Name="abc" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Viewbox HorizontalAlignment="Center" Margin="0,148,0,0">
+            <Grid Name="CompositeImage">
+                <Image Source="Images/kintestor.jpg" Stretch="UniformToFill" />
+                <Image x:Name="theImage" Stretch="UniformToFill" />
+            </Grid>
+        </Viewbox>
+
+        <StackPanel Grid.Row="3" HorizontalAlignment="Stretch" Name="statusBar" VerticalAlignment="Bottom" Background="White">
+            <TextBlock Text="{Binding StatusText}" Foreground="Black"/>
+        </StackPanel>
+        <AppBarButton HorizontalAlignment="Left" Icon="Back" Label="" Margin="4,65,0,0" VerticalAlignment="Top" Click="AppBarButton_Click" Height="88" Width="100"/>
+        <TextBlock HorizontalAlignment="Left" Style="{StaticResource HeaderTextBlockStyle}" TextWrapping="Wrap" Text="Fun With Kinect" VerticalAlignment="Top" Height="48" Width="565" Margin="111,79,0,0" />
+    </Grid>
+</Page>

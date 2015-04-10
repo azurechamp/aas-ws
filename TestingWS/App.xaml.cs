@@ -19,6 +19,7 @@ using Microsoft.WindowsAzure.MobileServices;
 using TestingApp.DataModels;
 using TestingApp.Models;
 using Windows.UI.Popups;
+using Microsoft.Kinect.Xaml.Controls;
 
 
 namespace TestingWS
@@ -93,7 +94,21 @@ namespace TestingWS
                 {
                 }
 
-                Window.Current.Content = rootFrame;
+
+                KinectRegion kinectRegion = new KinectRegion();
+                KinectUserViewer kinectUserViewer = new KinectUserViewer()
+                {
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Top,
+                    Height = 100,
+                    Width = 121
+                };
+                Grid grd = new Grid();
+                grd.Children.Add(kinectRegion);
+                grd.Children.Add(kinectUserViewer);
+                kinectRegion.Content = rootFrame;
+
+                Window.Current.Content = grd;
             }
 
             if (rootFrame.Content == null)

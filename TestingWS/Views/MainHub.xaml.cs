@@ -11,6 +11,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using TestingApp.DataModels;
 using TestingApp.Models;
+using Windows.ApplicationModel.Store;
 using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -332,6 +333,13 @@ namespace TestingWS.Views
         private void AppBarButton_Click_1(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(CreatePost));
+        }
+
+        private void AppBarButton_Click_2(object sender, RoutedEventArgs e)
+        {
+
+            this.Frame.Navigate(typeof(Kinec));
+          
         }
 
        

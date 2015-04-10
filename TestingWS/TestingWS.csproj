@@ -92,6 +92,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -116,6 +117,9 @@
     <Compile Include="DataModels\Post.cs" />
     <Compile Include="DataModels\Session.cs" />
     <Compile Include="DataModels\User.cs" />
+    <Compile Include="Kinec.xaml.cs">
+      <DependentUpon>Kinec.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -171,6 +175,7 @@
     </AppxManifest>
     <None Include="ApplicationInsights.config" />
     <None Include="packages.config" />
+    <PRIResource Include="Resources.resw" />
     <None Include="TestingWS_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -181,6 +186,7 @@
     <Content Include="Images\appbar.back.png" />
     <Content Include="Images\appbar.next.png" />
     <Content Include="Images\cyclign.png" />
+    <Content Include="Images\kintestor.jpg" />
     <Content Include="Images\leaderboard.png" />
     <Content Include="Images\running.png" />
     <Content Include="Images\Skating.png" />
@@ -241,6 +247,10 @@
     <Page Include="CommentUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Kinec.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -341,10 +351,10 @@
     <SDKReference Include="Microsoft.Kinect.Xaml.Controls, Version=2.0">
       <Name>Microsoft.Kinect.Xaml.Controls</Name>
     </SDKReference>
-    <SDKReference Include="Microsoft.VCLibs, version=12.0">
+    <SDKReference Include="Microsoft.VCLibs, Version=12.0">
       <Name>Microsoft Visual C++ 2013 Runtime Package for Windows</Name>
     </SDKReference>
-    <SDKReference Include="WindowsPreview.Kinect, version=2.0">
+    <SDKReference Include="WindowsPreview.Kinect, Version=2.0">
       <Name>WindowsPreview.Kinect</Name>
     </SDKReference>
   </ItemGroup>
