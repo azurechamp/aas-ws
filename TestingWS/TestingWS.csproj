@@ -193,6 +193,7 @@
     <Content Include="Images\Skiing.png" />
     <Content Include="Images\walking.png" />
     <Content Include="Images\wallpaper.png" />
+    <Content Include="madina.jpg" />
     <Content Include="SampleData\achievements\achievements_Files\image01.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

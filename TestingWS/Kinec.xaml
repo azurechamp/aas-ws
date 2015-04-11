@@ -138,7 +138,7 @@
     <Grid x:Name="abc" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Viewbox HorizontalAlignment="Center" Margin="0,148,0,0">
             <Grid Name="CompositeImage">
-                <Image Source="Images/kintestor.jpg" Stretch="UniformToFill" />
+                <Image Source="Images/kintestor.jpg" Stretch="Fill" />
                 <Image x:Name="theImage" Stretch="UniformToFill" />
                 <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="263" Margin="253,113,0,0" TextWrapping="Wrap" Text="READY....???" VerticalAlignment="Top" Width="442" RenderTransformOrigin="0.5,0.5">
                 	<TextBlock.Foreground>
