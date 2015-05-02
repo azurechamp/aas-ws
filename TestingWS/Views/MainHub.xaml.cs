@@ -321,5 +321,10 @@ namespace TestingWS.Views
            this.Frame.Navigate(typeof(AppSettings));
         }
         #endregion
+
+        private void AppBarButton_Click_4(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(PetInteraction));
+        }
     }
 }

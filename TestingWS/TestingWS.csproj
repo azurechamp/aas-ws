@@ -18,6 +18,8 @@
     <NuGetPackageImportStamp>47e877ba</NuGetPackageImportStamp>
     <ApplicationInsightsResourceId>/subscriptions/8fee00e5-0003-48b6-b77e-cbdca5253c18/resourcegroups/Default-ApplicationInsights-CentralUS/providers/microsoft.insights/components/TestingApp</ApplicationInsightsResourceId>
     <ExpressionBlendVersion>12.0.51020.0</ExpressionBlendVersion>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxBundlePlatforms>x86</AppxBundlePlatforms>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -106,6 +108,9 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AnimationImage.xaml.cs">
+      <DependentUpon>AnimationImage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -115,6 +120,7 @@
     <Compile Include="DataModels\Achievements.cs" />
     <Compile Include="DataModels\Comment.cs" />
     <Compile Include="DataModels\Post.cs" />
+    <Compile Include="DataModels\ReportsClass.cs" />
     <Compile Include="DataModels\Session.cs" />
     <Compile Include="DataModels\User.cs" />
     <Compile Include="Kinec.xaml.cs">
@@ -128,6 +134,9 @@
     <Compile Include="Models\RootParks.cs" />
     <Compile Include="Models\RootStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportsPage.xaml.cs">
+      <DependentUpon>ReportsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SampleData\achievements\achievements.xaml.cs">
       <DependentUpon>achievements.xaml</DependentUpon>
     </Compile>
@@ -149,6 +158,9 @@
     </Compile>
     <Compile Include="Views\MainHub.xaml.cs">
       <DependentUpon>MainHub.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PetInteraction.xaml.cs">
+      <DependentUpon>PetInteraction.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PostView.xaml.cs">
       <DependentUpon>PostView.xaml</DependentUpon>
@@ -186,9 +198,11 @@
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Images\abeer.gif" />
     <Content Include="Images\appbar.back.png" />
     <Content Include="Images\appbar.next.png" />
     <Content Include="Images\cyclign.png" />
+    <Content Include="Images\farwaAshraf.gif" />
     <Content Include="Images\kinectbk2.jpg" />
     <Content Include="Images\kinectbk3.jpg" />
     <Content Include="Images\kinectbk4.jpg" />
@@ -204,6 +218,7 @@
     <Content Include="Images\Skating.png" />
     <Content Include="Images\Skiing.png" />
     <Content Include="Images\walking.png" />
+    <Content Include="Images\walkingMonkey.gif" />
     <Content Include="Images\wallpaper.png" />
     <Content Include="madina.jpg" />
     <Content Include="SampleData\achievements\achievements_Files\image01.png">
@@ -251,12 +266,19 @@
     <Content Include="SampleData\SampleDataParks\SampleDataParks_Files\image05.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Views\crockey.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="AnimationImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CommentUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -268,6 +290,10 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ReportsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SampleData\achievements\achievements.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -294,6 +320,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainHub.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PetInteraction.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -350,6 +380,14 @@
     </Reference>
     <Reference Include="System.Net.Http.Primitives">
       <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\win8\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="WinRTXamlToolkit, Version=1.8.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WinRTXamlToolkit.Windows.1.8.1.0\lib\netcore451\WinRTXamlToolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WinRTXamlToolkit.Controls.DataVisualization, Version=1.8.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WinRTXamlToolkit.Controls.DataVisualization.Windows.1.8.1.0\lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
