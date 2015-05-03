@@ -86,19 +86,7 @@ namespace TestingWS.Views
                     if (cmt.PostNumber.Equals(postId))
                     {
 
-                        string commentPerson = "";
-                     
-                        foreach (User us in App._userData) 
-                        {
-                            if (us.Id.Equals(cmt.CommentOf)) 
-                            {
-                                commentPerson = us.Name;
-                            }
-                        }
-                        stk_comments.Children.Add(new CommentUserControl { Comment = cmt.CommentDisc , CommentBy = commentPerson});
-
-                       
-                    
+                        stk_comments.Children.Add(new CommentUserControl { Comment = cmt.CommentDisc });
                     }
 
                 }
