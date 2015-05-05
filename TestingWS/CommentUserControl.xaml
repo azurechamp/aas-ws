@@ -1,0 +1,21 @@
+﻿<UserControl x:Name="userControl"
+    x:Class="TestingWS.CommentUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TestingWS"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="85"
+    d:DesignWidth="432">
+
+    <Grid>
+        <Path Data="M0,0 L432,0 L432,66 L418.411,66 L407,82 L394.969,66 L0,66 z" Fill="#FFFFC500" HorizontalAlignment="Left" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Top" Width="432"/>
+        <ScrollViewer Margin="0,0,0,10">
+            <StackPanel>  
+                <TextBlock HorizontalAlignment="Left" Margin="5,8,0,0" TextWrapping="Wrap" Text="{Binding Comment, ElementName=userControl}" VerticalAlignment="Top" Style="{StaticResource SubtitleTextBlockStyle}" Foreground="#FF5B5B5B" FontSize="17.333"/>
+                <TextBlock Text="{Binding CommentBy, ElementName=userControl}" HorizontalAlignment="Right" VerticalAlignment="Bottom"></TextBlock>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

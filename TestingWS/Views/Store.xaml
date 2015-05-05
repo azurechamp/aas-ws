@@ -1,0 +1,80 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TestingWS.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ViewModels="using:TestingApp.ViewModels"
+    x:Class="TestingWS.Views.Store"
+    mc:Ignorable="d" d:DataContext="{d:DesignInstance ViewModels:StorePageView_Model, CreateList=True, IsDesignTimeCreatable=True}">
+    <Page.Resources>
+
+
+
+        <DataTemplate x:Key="ItemTemplate">
+            <Grid>
+                <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="201" Margin="10,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="192"/>
+                <Image x:Name="iamge" HorizontalAlignment="Left" Height="138" Margin="24,25,0,0" Source="{Binding image}" VerticalAlignment="Top" Width="164" Stretch="Fill"/>
+                <TextBlock x:Name="name" Text="{Binding name}" HorizontalAlignment="Left" Height="23" Margin="24,163,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="164" Foreground="Black" FontSize="17.333" FontWeight="Bold"/>
+                <TextBlock x:Name="health" Text="{Binding health}" HorizontalAlignment="Left" Height="28" Margin="24,183,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="75" Foreground="#FFF11111" FontWeight="Bold"/>
+                <TextBlock x:Name="stars" Text="{Binding stars}" HorizontalAlignment="Left" Height="28" Margin="127,183,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="75" Foreground="#FFF0C400" FontWeight="Bold"/>
+
+            </Grid>
+
+
+        </DataTemplate>
+        <ItemsPanelTemplate x:Key="ItemsPanelTemplate1">
+            <WrapGrid Orientation="Horizontal" />
+        </ItemsPanelTemplate>
+
+    </Page.Resources>
+
+
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="81*"/>
+            <ColumnDefinition Width="1245*"/>
+            <ColumnDefinition Width="40*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="66*"/>
+            <RowDefinition Height="67*"/>
+            <RowDefinition Height="51*"/>
+            <RowDefinition Height="62*"/>
+            <RowDefinition Height="453*"/>
+            <RowDefinition Height="69*"/>
+        </Grid.RowDefinitions>
+
+
+        <AppBarButton HorizontalAlignment="Left" Icon="Back" Label="" Margin="4,65,0,0" VerticalAlignment="Top" Click="AppBarButton_Click" Height="88" Width="100" Grid.RowSpan="3" Grid.ColumnSpan="2"/>
+        <Popup x:Name="BuyItemPopUp" Margin="347,5,0,0" HorizontalAlignment="Left" Width="460" Grid.Row="4" Grid.Column="1" Height="407" VerticalAlignment="Top">
+            <Grid Height="470" Width="459" Background="#FFFFD100">
+                <TextBlock x:Name="tbl_Stars_Copy" HorizontalAlignment="Left" Margin="151,357,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Width="72" FontSize="29.333" FontWeight="Bold" Foreground="#FF4D4D4D"/>
+                <TextBlock x:Name="tbl_HealthPoints_Copy" HorizontalAlignment="Left" Margin="281,357,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="40" Width="68" FontSize="29.333" FontWeight="Bold" Foreground="#FF4D4D4D"/>
+                <TextBlock HorizontalAlignment="Left" Margin="233,357,0,0" TextWrapping="Wrap" Text="❤" VerticalAlignment="Top" Height="47" Width="48" Foreground="#FFFF4545" FontSize="32"/>
+                <TextBlock HorizontalAlignment="Left" Margin="101,352,0,0" TextWrapping="Wrap" Text=" ✩" VerticalAlignment="Top" Height="47" Width="45" Foreground="#FFFF1700" FontSize="32"/>
+                <Button IsEnabled="False" x:Name="btn_buy" Content="Buy" HorizontalAlignment="Left" Margin="10,393,0,0" VerticalAlignment="Top" Width="134" Background="#FF3A8F12" Click="buyItem" />
+                <Button Content="Cancel" HorizontalAlignment="Left" Margin="313,393,0,0" VerticalAlignment="Top" Width="132" Background="#FFD33434" Click="Button_Click" />
+                <Rectangle HorizontalAlignment="Left" Height="265" Margin="99,78,0,0" VerticalAlignment="Top" Width="250" RadiusY="29" RadiusX="29" Fill="#FF4D4D4D"/>
+                <Image x:Name="img_prod" HorizontalAlignment="Left" Height="220" Margin="115,99,0,0" VerticalAlignment="Top" Width="220" Stretch="UniformToFill"/>
+                <Rectangle Fill="#FF4D4D4D" HorizontalAlignment="Left" Height="69" Margin="-4,0,0,0" VerticalAlignment="Top" Width="463"/>
+                <TextBlock x:Name="tbl_prodtitle" HorizontalAlignment="Left" Height="59" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="435" FontSize="40" FontWeight="Bold" Foreground="#FFFFD100"/>
+
+            </Grid>
+        </Popup>
+        <ListView x:Name="lbx_store" HorizontalAlignment="Left" Height="453" ItemTemplate="{StaticResource ItemTemplate}" ItemsSource="{Binding obs_Food}" Margin="38,0,0,0" VerticalAlignment="Top" Width="534" ItemsPanel="{StaticResource ItemsPanelTemplate1}" Background="{x:Null}" Grid.Row="4" Grid.Column="1"/>
+        <ListView  x:Name="lbx_drinks" HorizontalAlignment="Left" Height="453" ItemTemplate="{StaticResource ItemTemplate}" ItemsSource="{Binding obs_Drink}" Margin="600,0,0,0" VerticalAlignment="Top" Width="524" ItemsPanel="{StaticResource ItemsPanelTemplate1}" Background="{x:Null}" Grid.Row="4" Grid.Column="1"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Style="{StaticResource HeaderTextBlockStyle}" TextWrapping="Wrap" Text="Pet Store" VerticalAlignment="Top" Height="48" Width="565" Margin="30,13,0,0" Grid.Row="1" />
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Style="{StaticResource HeaderTextBlockStyle}" TextWrapping="Wrap" Text="Food" VerticalAlignment="Top" Height="48" Width="256" Margin="58,13,0,0" Grid.Row="3" FontSize="36" FontWeight="Bold" />
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Style="{StaticResource HeaderTextBlockStyle}" TextWrapping="Wrap" Text="Drinks" VerticalAlignment="Top" Height="48" Width="256" Margin="620,14,0,0" Grid.Row="3" FontSize="36" FontWeight="Bold" />
+        <StackPanel Grid.Column="1" Margin="0,16,4,4" Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right" Width="295">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="❤" VerticalAlignment="Top" Height="41" Width="38" Foreground="#FFFF4545" FontSize="36"/>
+            <TextBlock x:Name="tbl_HealthPoints" HorizontalAlignment="Left" Margin="0,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="41" Width="107" FontSize="36"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text=" ✩" VerticalAlignment="Top" Height="47" Width="52" Foreground="#FFFFE800" FontSize="36"/>
+
+            <TextBlock x:Name="tbl_Stars" HorizontalAlignment="Left" Margin="0,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="41" Width="88" FontSize="36" RenderTransformOrigin="0.696,0.427"/>
+        </StackPanel>
+
+    </Grid>
+</Page>
