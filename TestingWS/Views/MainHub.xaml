@@ -1,0 +1,264 @@
+﻿<Page
+    x:Class="TestingWS.Views.MainHub"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TestingWS.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+
+        <DataTemplate x:Key="ItemTemplate">
+            <Grid Height="290" Width="208" Background="#FFFF8000" Margin="0,10,10,0">
+                <Rectangle Fill="#FF3C3C3C" HorizontalAlignment="Left" Height="80" VerticalAlignment="Top" Width="214" Margin="0,0,-6,0"/>
+                <Image Source="{Binding image}" HorizontalAlignment="Left" Width="199" Margin="5,0,0,262" Stretch="UniformToFill"/>
+                <TextBlock x:Name="title" Text="{Binding title}" Foreground="White" FontSize="18.667" TextWrapping="Wrap" FontWeight="Bold" Margin="6,86,3,177"/>
+                <TextBlock x:Name="source" Text="{Binding source}" FontSize="13.333" Foreground="#FF323232" Margin="5,118,4,147" FontWeight="Bold"/>
+                <TextBlock x:Name="disc" Text="{Binding disc}" TextWrapping="Wrap" Foreground="#FF464646" TextTrimming="WordEllipsis" Margin="7,143,3,24"/>
+            </Grid>
+        </DataTemplate>
+        <ItemsPanelTemplate x:Key="ItemsPanelTemplate1">
+            <WrapGrid Orientation="Horizontal"/>
+        </ItemsPanelTemplate>
+        <DataTemplate x:Key="ItemTemplate1">
+            <Grid HorizontalAlignment="Left" Width="159" Height="166"  >
+                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
+                    <Image Source="{Binding image}" Stretch="UniformToFill" Margin="0,0,0,91"/>
+                </Border>
+                <StackPanel Background="#A6F3A600" Margin="0,70,0,0">
+                    <TextBlock Text="{Binding title}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextBlockStyle}" Height="37" TextWrapping="NoWrap" Margin="15,0,15,0"/>
+                    <TextBlock Text="{Binding source}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" Margin="15,0,15,10" FontWeight="Bold"/>
+                    <TextBlock Text="{Binding disc}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" Margin="15,0,15,10" Height="22"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <CollectionViewSource x:Key="ItemsGroupedByGroup" IsSourceGrouped="True" ItemsPath="Items" Source="{Binding Groups, Source={StaticResource ArticlesSampleData}}"/>
+        <DataTemplate x:Key="ItemTemplate2">
+            <Grid Height="196" Width="141" Margin="10" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="1" Margin="10,0,0,0">
+                    <Rectangle HorizontalAlignment="Left" Height="194" Margin="0,2,0,0" VerticalAlignment="Top" Width="131">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFFFAE00" Offset="0"/>
+                                <GradientStop Color="#FFFFAE00" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+
+                    <TextBlock Text="{Binding name}" Style="{StaticResource TitleTextBlockStyle}" Foreground="Black" Margin="4,0,6,176"/>
+                    <TextBlock Text="{Binding country}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" Foreground="#FF002CF1" Margin="4,20,6,156"/>
+                    <TextBlock Text="{Binding city}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" Foreground="#FF555555" Margin="4,40,6,136"/>
+                    <TextBlock Text="{Binding distance}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" FontWeight="Bold" FontSize="16" Foreground="#FF494A4B" Margin="4,60,6,116"/>
+                    <TextBlock Text="{Binding checkins}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" Foreground="#FF2D680B" FontWeight="Bold" Margin="4,80,6,96"/>
+                    <Rectangle Fill="#FF575757" HorizontalAlignment="Left" Height="91" Margin="0,105,0,0" VerticalAlignment="Top" Width="131"/>
+                    <AppBarButton HorizontalAlignment="Left" Icon="Map" Label="" Margin="14,117,0,0" VerticalAlignment="Top" Height="68" Width="89"/>
+
+                </Grid>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="GroupTemplate">
+            <Grid Height="33" Width="183" Margin="10" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="1" Margin="10,0,0,0">
+                    <Rectangle Fill="#FF303030" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="229"/>
+                    <TextBlock Text="{Binding achTitle}" Style="{StaticResource TitleTextBlockStyle}" Margin="63,0,0,0" FontSize="12"/>
+                    <Rectangle Fill="#FFF3C21C" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="58"/>
+                    <Path Data="M32.556919,7.5459137C32.388317,13.155273 31.348522,16.927387 30.031527,19.709999 34.058911,16.967789 37.8205,13.806376 38.374001,7.5459137z M3.3650003,7.5459137C3.9177938,13.806376 7.6801546,16.967789 11.706803,19.709999 10.389719,16.927387 9.349994,13.155274 9.1814569,7.5459137z M20.868891,2.8440046C14.533635,2.8401542 12.059054,5.4313951 12.062254,6.3923125 12.062254,7.3584399 14.532935,9.9443407 20.868891,9.9508705 27.205345,9.9443407 29.676028,7.3584399 29.676028,6.3923125 29.679327,5.4313951 27.204745,2.8401542 20.868891,2.8440046z M20.8699,0C27.67,0,31.0189,2.2226601,32.145199,4.2994399L40.0984,4.2994399C41.004502,4.2994399 41.739601,5.0272799 41.739601,5.9231601 41.739601,15.8814 35.4063,20.076799 30.3177,23.4492 26.156901,26.204399 23.6068,28.0651 23.6068,31.429701L23.6068,34.4688C27.9765,34.954399 31.1875,36.571602 31.1875,38.493401 31.1875,40.7981 26.5684,42.666698 20.8699,42.666698 15.1719,42.666698 10.5528,40.7981 10.5528,38.493401 10.5528,36.571602 13.7637,34.954399 18.133499,34.4688L18.133499,31.429701C18.133499,28.0651 15.5833,26.204399 11.4225,23.4492 6.3339804,20.076799 2.9041269E-07,15.8814 0,5.9231601 2.9041269E-07,5.0272799 0.73506629,4.2994399 1.6413205,4.2994399L9.5957206,4.2994399C10.7213,2.2226601,14.070401,0,20.8699,0z" Stretch="Uniform" Fill="#FFFFFFFF" Width="26" Height="26" RenderTransformOrigin="0.5,0.5" Margin="14.508,5.115,0,0" UseLayoutRounding="False" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                </Grid>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Page.BottomAppBar>
+        <AppBar>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <AppBarButton HorizontalAlignment="Stretch" Icon="Clock" Label="Schedule Exercise" VerticalAlignment="Stretch" Click="ScheduleExerciseTapped"/>
+                    <AppBarButton HorizontalAlignment="Stretch" Icon="Clock" Label="Pet Interaction" VerticalAlignment="Stretch" Click="AppBarButton_Click_4"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
+                    <AppBarButton HorizontalAlignment="Stretch" Icon="Contact" Label="Profile" VerticalAlignment="Stretch" Click="profileAppbarClicked"/>
+                    <AppBarButton HorizontalAlignment="Stretch" Icon="GoToStart" Label="Store" VerticalAlignment="Stretch" Click="storeAppbarClicked"/>
+                    <AppBarButton HorizontalAlignment="Stretch" Icon="OpenWith" Label="Leaderboard" VerticalAlignment="Stretch" Click="LeaderBoardTapped"/>
+                    <AppBarButton HorizontalAlignment="Stretch" Icon="Setting" Label="Setting" VerticalAlignment="Stretch" Click="AppBarButton_Click_3"/>
+                    <AppBar>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Orientation="Horizontal"/>
+                            <StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal"/>
+                        </Grid>
+                    </AppBar>
+                </StackPanel>
+            </Grid>
+        </AppBar>
+    </Page.BottomAppBar>
+
+    <Grid Background="Black" DataContext="{Binding Source={StaticResource SampleDataParks}}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="96*"/>
+            <ColumnDefinition Width="747*"/>
+            <ColumnDefinition Width="507*"/>
+            <ColumnDefinition Width="16*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64*"/>
+            <RowDefinition Height="73*"/>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="571*"/>
+            <RowDefinition Height="46*"/>
+        </Grid.RowDefinitions>
+
+        <Rectangle Grid.Column="2" Fill="#FFFFA200" HorizontalAlignment="Left" Height="265" Margin="0,305,0,0" Grid.Row="3" VerticalAlignment="Top" Width="507"/>
+
+        <AppBarButton HorizontalAlignment="Left" Label="" Margin="13,3,0,0" VerticalAlignment="Top" Width="98" Height="72" Grid.Row="1" Click="AppBarButton_Click" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <AppBarButton.Icon>
+                <SymbolIcon Height="40" Symbol="Back" VerticalAlignment="Top"/>
+            </AppBarButton.Icon>
+        </AppBarButton>
+
+
+
+        <TextBlock HorizontalAlignment="Left" Style="{StaticResource HeaderTextBlockStyle}" TextWrapping="Wrap" Text="Welcome" VerticalAlignment="Top" Height="48" Width="565" Margin="15,15,0,0" Grid.Column="1" Grid.Row="1" />
+        <GridView x:Name="lbx_articles" Grid.Column="2" ItemTemplate="{StaticResource ItemTemplate1}" IsSwipeEnabled="False" Grid.Row="3" SelectionMode="Single" Margin="0,347,0,0" CanDragItems="True" CanReorderItems="True">
+            <GridView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <Grid Margin="1,0,0,6" >
+                                <StackPanel Orientation="Horizontal"/>
+                            </Grid>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </GridView.GroupStyle>
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid GroupPadding="0,0,70,0"/>
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
+        </GridView>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="7,317,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Tips + Articles" VerticalAlignment="Top" FontSize="25" Foreground="#FF363636" FontWeight="Bold"/>
+        <Rectangle Grid.Column="2" Fill="#FFFFB900" HorizontalAlignment="Left" Height="296" Grid.Row="3" VerticalAlignment="Top" Width="507"/>
+        <Grid Grid.Column="1" Margin="0,0,346,0" Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="188*"/>
+                <ColumnDefinition Width="213*"/>
+            </Grid.ColumnDefinitions>
+            <Rectangle Fill="#FFFF9700" HorizontalAlignment="Left" Height="570" VerticalAlignment="Top" Width="401" Grid.ColumnSpan="2"/>
+            <AppBarButton Foreground="#FFFFFFFF" Margin="119,465,0,0" Label="Reports" Grid.ColumnSpan="2">
+                <AppBarButton.Icon>
+                    <PathIcon HorizontalAlignment="Center" VerticalAlignment="Center" Data="M16.9355220794678,2.47785115242004L18.1293354034424,2.97271156311035 18.6237277984619,4.16612148284912 18.181224822998,5.30099582672119 17.097806930542,5.83980369567871 15.0872774124146,10.6885814666748 15.6220445632935,11.9153289794922 15.1274862289429,13.1109371185303 13.932523727417,13.606146812439 12.7390384674072,13.1109371185303 12.2441291809082,11.9153289794922 12.3271942138672,11.419753074646 8.52945613861084,7.43279314041138 7.10490942001343,10.8423337936401 7.73726320266724,12.1509265899658 7.24271678924561,13.34592628479 6.04772472381592,13.8405275344849 4.85430669784546,13.34592628479 4.35944318771362,12.1509265899658 4.70599317550659,11.1324157714844 5.57896089553833,10.5358591079712 6.98038721084595,7.13867473602295 6.5170726776123,6.56656694412231 6.34310245513916,5.82515048980713 6.8375244140625,4.6317400932312 8.03144931793213,4.13687992095947 9.22640419006348,4.6317400932312 9.72096061706543,5.82515048980713 9.63545799255371,6.33293962478638 13.4271020889282,10.3125410079956 13.5784206390381,10.2661333084106 15.6538257598877,5.25750923156738 15.246000289917,4.16612148284912 15.7405586242676,2.97271156311035 16.9355220794678,2.47785115242004z M0,0L2.72587013244629,0 2.72587013244629,15.9719696044922 20,15.9719696044922 20,18.6977920532227 2.72587013244629,18.6977920532227 0.225850000977516,18.6977920532227 0,18.6977920532227 0,0z" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+
+            <AppBarButton Foreground="#FFFFFFFF" Margin="17,0,0,17" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="88" Label="Fun With Kinect" Click="AppBarButton_Click_2">
+                <AppBarButton.Icon>
+                    <PathIcon HorizontalAlignment="Center" VerticalAlignment="Center" Data="M10.1353435516357,5.09718799591064L11.6518354415894,5.40331268310547 12.8901920318604,6.23816347122192 13.7251005172729,7.47645616531372 14.03125,8.99290657043457 13.7251005172729,10.5094518661499 12.8901920318604,11.7478923797607 11.6518354415894,12.5828790664673 10.1353435516357,12.8890628814697 8.61900997161865,12.5828790664673 7.38072633743286,11.7478923797607 6.54583740234375,10.5094518661499 6.23968696594238,8.99290657043457 6.36233758926392,8.01925754547119 6.38149833679199,7.9484486579895 6.40424013137817,8.00612640380859 7.16288328170776,8.92738723754883 8.33360958099365,9.28500080108643 9.81420421600342,8.67169952392578 10.4274997711182,7.19109439849854 10.0698890686035,6.02038288116455 9.1486349105835,5.26174116134644 9.09094619750977,5.23899459838867 9.16178321838379,5.21982622146606 10.1353435516357,5.09718799591064z M10.1353445053101,3.53875017166138L8.01232814788818,3.96735644340515 6.27868509292603,5.13621425628662 5.10984754562378,6.86988306045532 4.68124961853027,8.99292182922363 5.10984754562378,11.1160364151001 6.27868509292603,12.8498439788818 8.01232814788818,14.0188341140747 10.1353445053101,14.4474992752075 12.258412361145,14.0188341140747 13.9921398162842,12.8498439788818 15.1610546112061,11.1160364151001 15.5896873474121,8.99292182922363 15.1610546112061,6.86988306045532 13.9921398162842,5.13621425628662 12.258412361145,3.96735644340515 10.1353445053101,3.53875017166138z M1.97935461997986,3.40500020980835L1.47421884536743,3.6141836643219 1.26500010490417,4.11906290054321 1.47421884536743,4.62422704696655 1.97935461997986,4.8334379196167 2.48450374603271,4.62422704696655 2.69374990463257,4.11906290054321 2.48450374603271,3.6141836643219 1.97935461997986,3.40500020980835z M6.76028156280518,0L13.415563583374,0 14.1961879730225,0.323384582996368 14.5195007324219,1.10393762588501 14.7143754959106,2.20789384841919 14.7123804092407,2.26469016075134 14.711953163147,2.26875019073486 20,2.26875019073486 20,15.905312538147 0,15.905312538147 0,2.26875019073486 5.39921045303345,2.26875019073486 5.39874458312988,2.26469016075134 5.39656257629395,2.20789384841919 5.65637540817261,1.10393762588501 5.97969532012939,0.323384582996368 6.76028156280518,0z" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+
+            <StackPanel x:Name="MainStack" Orientation="Vertical" Height="190" Margin="0,260,0,120" Grid.ColumnSpan="2">
+                <Grid Height="29">
+                    <Rectangle HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="391" Fill="#FFD88B05" Margin="5,0,0,0"/>
+                    <TextBlock Text="Last Training" Margin="10,0" />
+                    <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text=" ✩" VerticalAlignment="Top" Height="28" Width="26" Foreground="#FF421F07" FontWeight="Bold" Margin="0,0,10,0"/>
+                </Grid>
+                <Grid Margin="5,5,5,5" Height="96">
+                    <Rectangle Fill="#FFD88B05" HorizontalAlignment="Right" Height="96" VerticalAlignment="Top" Width="194"/>
+                    <Rectangle Fill="#FFD88B05" HorizontalAlignment="Left" Height="96" VerticalAlignment="Top" Width="202" />
+                    <TextBlock Text="DISTANCE" Margin="5,0,0,0" />
+                    <TextBlock x:Name="tbl_distance" Text="" Margin="68,38,0,0" Height="37" VerticalAlignment="Top" HorizontalAlignment="Left" Width="84" FontWeight="Bold" FontSize="25"/>
+                    <TextBlock Text="mile"  FontSize="15" HorizontalAlignment="Right" Margin="0,0,210,0" />
+                    <TextBlock Text="CALORIES" Margin="219,0,0,0" />
+                    <TextBlock Text="kcal" Margin="0,0,5,0" FontSize="15" HorizontalAlignment="Right" />
+                    <TextBlock x:Name="tbl_calories" Text="" Margin="0,38,35,0" Height="37" VerticalAlignment="Top" HorizontalAlignment="Right" Width="84" FontWeight="Bold" FontSize="25"/>
+                </Grid>
+                <StackPanel Margin="0,0,0,0" Orientation="Horizontal" Height="44">
+                    <Grid Width="123" Margin="5,0,0,0">
+                        <Rectangle Fill="#FFD88B05" HorizontalAlignment="Right" Height="44" VerticalAlignment="Top" Width="122"/>
+                        <TextBlock Text="TIME"  FontSize="15" Margin="2,0,0,0" />
+                        <TextBlock Text="HH:MM:SS" FontSize="10" Margin="2,0" HorizontalAlignment="Right" />
+                        <TextBlock x:Name="tbl_time" Text="" Margin="24,15,0,5" FontWeight="Bold" FontSize="20" HorizontalAlignment="Left" Width="84"/>
+                    </Grid>
+                    <Grid Width="164" Margin="5,0,0,0">
+                        <Rectangle Fill="#FFD88B05" HorizontalAlignment="Right" Height="44" VerticalAlignment="Top" Width="165" />
+                        <TextBlock Text="mph"  FontSize="10" HorizontalAlignment="Right" Margin="0,0,2,0"/>
+                        <TextBlock Text="PACE" FontSize="15" Margin="2,0,0,0" />
+                        <TextBlock x:Name="tbl_pace" Text="" Margin="48,14,0,0" FontWeight="Bold" FontSize="20" HorizontalAlignment="Left" Width="73" Height="24" VerticalAlignment="Top"/>
+                    </Grid>
+                    <Grid Width="99" Margin="5,0,0,0">
+                        <Rectangle Fill="#FFD88B05" HorizontalAlignment="Right" Height="44" VerticalAlignment="Top" Width="95" Margin="0,0,4,0" />
+                        <TextBlock Text="mph" FontSize="10" HorizontalAlignment="Right" Margin="0,31,3,0" />
+                        <TextBlock Text="AVG SPEED" FontSize="15" Margin="2,0,0,0" HorizontalAlignment="Left" Width="93" />
+                        <TextBlock x:Name="tbl_avgspeed" Text="" Margin="22,14,27,6" FontWeight="Bold" FontSize="20"/>
+                    </Grid>
+                </StackPanel>
+
+
+            </StackPanel>
+            <Grid Grid.Column="1" Margin="0,48,10,321">
+                <Rectangle Fill="#B2F4F4F5" HorizontalAlignment="Left" Height="201" VerticalAlignment="Top" Width="203"/>
+                <GridView x:Name="lbx_Achv" DataContext="{Binding Source={StaticResource achievements}}" ItemTemplate="{StaticResource GroupTemplate}"  IsSwipeEnabled="False" SelectionMode="Single" Margin="-9,0,0,0"/>
+            </Grid>
+            <Rectangle Fill="#B2F4F4F5" HorizontalAlignment="Left" Height="201" Margin="10,48,0,0" VerticalAlignment="Top" Width="168"/>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="6,24,0,0" TextWrapping="Wrap" Text="Achievements" VerticalAlignment="Top" FontSize="20" Foreground="#FF363636"/>
+            <AppBarButton Foreground="#FFFFFFFF" Margin="24,465,0,0" Label="Post in Community" Grid.Column="1" Icon="Comment"/>
+            <AppBarButton Foreground="#FFFFFFFF" Margin="112,465,0,0" Label="Post in Community" Grid.Column="1" Icon="FourBars" Click="AppBarButton_Click_1"/>
+
+        </Grid>
+        <Grid Grid.Column="1" Margin="409,0,7,0" Grid.Row="3">
+            <Rectangle Fill="#FFFFC500" HorizontalAlignment="Left" Height="570" VerticalAlignment="Top" Width="331"/>
+            <StackPanel Margin="10,44,10,0" Orientation="Horizontal" Height="36" VerticalAlignment="Top">
+                <TextBox x:Name="tbx_search" Width="256" />
+                <Path Data="M19.5998,2.4840003C23.659668,2.4839998,27.431053,3.7181342,30.559399,5.8314824L31.167156,6.2636421 30.596323,6.4741473C28.048468,7.4562106,25.943617,8.6524835,24.204762,9.9604874L23.652435,10.389726 23.279694,10.26356C22.117241,9.901866 20.881281,9.7069998 19.599794,9.7069993 12.767303,9.7069998 7.2250004,15.249864 7.2250004,22.08187 7.2250004,28.918975 12.767303,34.457999 19.599794,34.457999 26.434387,34.457999 31.973999,28.918975 31.973999,22.08187 31.973999,21.441369 31.92531,20.8122 31.831432,20.197865L31.778439,19.901145 32.223007,19.861196C33.077583,19.793773 33.974937,19.759999 34.914799,19.759999 36.142612,19.759999 37.347096,19.821172 38.487259,19.918633L39.08791,19.974282 39.099812,20.078382C39.166725,20.737117 39.201,21.405488 39.201,22.081849 39.201,26.140956 37.967033,29.911862 35.853653,33.039908L35.656269,33.324626 52.362999,51.518039 45.804447,57.539001 29.024696,39.269973 28.943281,39.315482C26.165911,40.824077 22.983023,41.680999 19.5998,41.680999 8.7774296,41.680999 3.2250568E-08,32.906133 0,22.081849 3.2250568E-08,11.260067 8.7774296,2.4839999 19.5998,2.4840003z M47.107105,0L60.410004,13.370853 47.107105,25.157001 47.107105,18.868136C47.107105,18.868136 24.148741,12.58177 18.410999,25.157001 18.410999,22.017669 20.496914,6.2889054 47.107105,6.2889056z" Stretch="Uniform" Fill="#FFFFFFFF"  RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False"  Width="48" Margin="5,0,0,0" Tapped="searchTapped">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <RotateTransform Angle="0" />
+                            <ScaleTransform ScaleX="1" ScaleY="1" />
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+            </StackPanel>
+            <!--Yaha par Xaml copy karni ha -Abeer-->
+            <ListView x:Name="lbx_Posts" Margin="10,113,10,10">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding PostTitle}"  />
+                            <TextBlock Text="{Binding PostDisc}" Height="76" Foreground="#FF898989" TextWrapping="Wrap" />
+                            <Rectangle Height="7" Fill="#FFFBC50B"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+        </Grid>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="10,8,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Nearby Parks" VerticalAlignment="Top" FontSize="25" Foreground="#FF363636" FontWeight="Bold"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="423,8,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Community" VerticalAlignment="Top" FontSize="25" Foreground="#FF363636" FontWeight="Bold"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="15,0,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Dashboard" VerticalAlignment="Top" FontSize="25" Foreground="#FF363636" FontWeight="Bold"/>
+        <GridView x:Name="lbx_nearby" Grid.Column="1" ItemTemplate="{StaticResource ItemTemplate2}"  IsSwipeEnabled="False" Grid.Row="3" SelectionMode="Single" Margin="745,43,0,274" Grid.ColumnSpan="2"/>
+        <StackPanel Grid.Column="2" Margin="0,18,28,8" Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right" Width="295">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="❤" VerticalAlignment="Top" Height="41" Width="38" Foreground="#FFFF4545" FontSize="36"/>
+            <TextBlock x:Name="tbl_HealthPoints" HorizontalAlignment="Left" Margin="0,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="41" Width="107" FontSize="36"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text=" ✩" VerticalAlignment="Top" Height="47" Width="52" Foreground="#FFFFE800" FontSize="36"/>
+
+            <TextBlock x:Name="tbl_Stars" HorizontalAlignment="Left" Margin="0,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="41" Width="88" FontSize="36" RenderTransformOrigin="0.696,0.427"/>
+        </StackPanel>
+        <TextBlock x:Name="tbl_PetName" HorizontalAlignment="Left" Margin="258,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="41" Width="221" FontSize="36" Grid.Column="2" Tapped="profiletapped"/>
+    </Grid>
+</Page>
