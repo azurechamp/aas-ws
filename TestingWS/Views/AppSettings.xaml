@@ -1,0 +1,41 @@
+﻿<Page
+    x:Class="TestingWS.Views.AppSettings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TestingWS.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <AppBarButton HorizontalAlignment="Left" Icon="Back" Label="" Margin="16,85,0,0" VerticalAlignment="Top" Click="AppBarButton_Click" Height="88" Width="100"/>
+        <TextBlock HorizontalAlignment="Left" Style="{StaticResource HeaderTextBlockStyle}" TextWrapping="Wrap" Text="Settings" VerticalAlignment="Top" Height="48" Width="565" Margin="123,99,0,0" />
+        <Grid HorizontalAlignment="Right" Height="547" Margin="0,188,218,0" VerticalAlignment="Top" Width="394">
+            <StackPanel Margin="0,10,0,0">
+                <ToggleSwitch OffContent="Off" Header="BackGround Music"></ToggleSwitch>
+                <ToggleSwitch OffContent="Miles" Header="Distance" OnContent="Kilometers"></ToggleSwitch>
+                <ToggleSwitch OffContent="Off" Header="Tile Notification" OnContent="On"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Edit Profile" FontSize="18" Height="36" ></TextBlock>
+                    <AppBarButton Icon="Contact"/>
+                </StackPanel>
+
+
+            </StackPanel>
+        </Grid>
+        <Rectangle Fill="#FFFFD100" HorizontalAlignment="Left" Height="547" Stroke="#FFFFD100" VerticalAlignment="Top" Width="40" Margin="49,180,0,0"/>
+        <Grid HorizontalAlignment="Left" Height="547" Margin="123,180,0,0" VerticalAlignment="Top" Width="370">
+            <StackPanel>
+                <TextBlock Text="About Us" Style="{StaticResource  SubheaderTextBlockStyle}" ></TextBlock>
+                <TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Text="faklsjd;flkajsd;flkja;slkdfja;lskdjf;alksdjf;alskdjf;alksjdf;lakjsd;flakjsd;flkajsd;lfkjas;dlkfjas;ldkfja;lskdjfa;lskdjfa;lskdjf;alkdj" TextWrapping="Wrap"></TextBlock>
+                <TextBlock Text="Contact Us" Style="{StaticResource  SubheaderTextBlockStyle}" Margin="0,0,0,10" ></TextBlock>
+                <Button Content="Email" Height="55" Width="363"></Button>
+                <Button Content="Tweet Us" Height="55" Width="363"></Button>
+                <Button Content="FInd Us on Facbook" Height="55" Width="363"></Button>
+
+
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</Page>

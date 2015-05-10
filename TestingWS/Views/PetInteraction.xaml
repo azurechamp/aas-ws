@@ -1,0 +1,29 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TestingWS.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:TestingWS="using:TestingWS"
+    x:Class="TestingWS.Views.PetInteraction"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <Storyboard x:Name="crockyAndaySayNikaltayHuay"/>
+    </Page.Resources>
+
+    <Grid Background="White">
+        <AppBarButton HorizontalAlignment="Left" Label="" Margin="13,67,0,0" VerticalAlignment="Top" Width="98" Height="72" Click="AppBarButton_Click">
+            <AppBarButton.Icon>
+                <SymbolIcon Height="40" Symbol="Back" VerticalAlignment="Top" Foreground="Black"/>
+            </AppBarButton.Icon>
+        </AppBarButton>
+
+        <TextBlock HorizontalAlignment="Left" Style="{StaticResource HeaderTextBlockStyle}" TextWrapping="Wrap" Text="Pet Interaction" VerticalAlignment="Top" Height="48" Width="565" Margin="111,79,0,0" Foreground="Black" />
+        <FlipView>
+        <TestingWS:AnimationImage ImageUrl="/Images/farwaAshraf.gif" HorizontalAlignment="Left" Height="336" Margin="527,274,0,0" VerticalAlignment="Top" Width="312"/>
+            <TestingWS:AnimationImage ImageUrl="/Images/walkingMonkey.gif" HorizontalAlignment="Left" Height="336" Margin="527,274,0,0" VerticalAlignment="Top" Width="312"/>
+        <TestingWS:AnimationImage ImageUrl="/Images/abeer.gif" HorizontalAlignment="Left" Height="336" Margin="527,274,0,0" VerticalAlignment="Top" Width="312"/>
+
+        </FlipView>
+    </Grid>
+</Page>
