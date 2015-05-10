@@ -23,12 +23,15 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace TestingWS.Views
 {
+    /// <summary>
+    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// </summary>
     public sealed partial class MainHub : Page
     {
-        #region Declarations
 
         private ObservableCollection<Achievements> obs_achvments = new ObservableCollection<Achievements>();
         private ObservableCollection<vene> obs_NearbyParks = new ObservableCollection<vene>();
@@ -37,8 +40,11 @@ namespace TestingWS.Views
         private IMobileServiceTable<Post> todoTable = App.MobileService.GetTable<Post>();
         private MobileServiceCollection<Achievements, Achievements> Achitems;
         private IMobileServiceTable<Achievements> achivTable = App.MobileService.GetTable<Achievements>();
+
+
         double latitude, longitude;
-        #endregion
+
+
         public MainHub()
         {
             this.InitializeComponent();
@@ -51,7 +57,7 @@ namespace TestingWS.Views
             lbx_nearby.SelectionChanged += lbx_nearby_SelectionChanged;
             lbx_Posts.SelectionChanged+=lbx_Posts_SelectionChanged;
         }
-        #region Selection Changed
+
         async void lbx_nearby_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -78,6 +84,7 @@ namespace TestingWS.Views
             }
 
         }
+
         void lbx_articles_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             App._SelectedArticle = lbx_articles.SelectedItem as Article;
@@ -90,6 +97,8 @@ namespace TestingWS.Views
                 lbx_articles.SelectedIndex = -1;
             }
         }
+
+
         void lbx_Posts_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             App._PostData = lbx_Posts.SelectedItem as Post;
@@ -104,6 +113,7 @@ namespace TestingWS.Views
             }
 
         }
+
         private async void GetLocation()
         {
             Geolocator geo = new Geolocator();
@@ -134,7 +144,8 @@ namespace TestingWS.Views
            }
           
         }
-        #endregion
+
+
         #region AZURE
         private async Task RefreshTodoItems()
         {
@@ -220,7 +231,6 @@ namespace TestingWS.Views
         }
        
         #endregion
-        #region JSON
         public async void GetNearbyData() 
         {
             try
@@ -255,6 +265,7 @@ namespace TestingWS.Views
             {
             }
         }
+
         public async void GetArticlesData()
         {
 
@@ -278,53 +289,69 @@ namespace TestingWS.Views
             {
             }
         }
-        #endregion
-        #region Taps
+
+
+
+
+
+
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(MainPage));
         }
+
         private void storeAppbarClicked(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Store));
         }
+
         private void profileAppbarClicked(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(UpdateProfile));
         }
+
         private void LeaderBoardTapped(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(LeaderBoard));
         }
+
         private void ScheduleExerciseTapped(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(ScheduleExercise));
         }
+
         private void searchTapped(object sender, TappedRoutedEventArgs e)
         {
             lbx_Posts.ItemsSource = items.Where(x => x.PostTitle.Contains(tbx_search.Text));
         }
+
         private void profiletapped(object sender, TappedRoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Profile));
         }
+
         private void AppBarButton_Click_1(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(CreatePost));
         }
-        private void AppBarButton_Click_2(object sender, RoutedEventArgs e)
-        {
-           this.Frame.Navigate(typeof(Kinec));
-        }
-        private void AppBarButton_Click_3(object sender, RoutedEventArgs e)
-        {
-           this.Frame.Navigate(typeof(AppSettings));
-        }
-        #endregion
 
         private void AppBarButton_Click_4(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(PetInteraction));
+
         }
+
+        private void AppBarButton_Click_3(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AppBarButton_Click_2(object sender, RoutedEventArgs e)
+        {
+
+           this.Frame.Navigate(typeof(Kinec));
+          
+        }
+  
+
     }
 }

@@ -147,9 +147,6 @@
       <DependentUpon>SampleDataParks.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\StorePageView Model.cs" />
-    <Compile Include="Views\AppSettings.xaml.cs">
-      <DependentUpon>AppSettings.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\CreatePost.xaml.cs">
       <DependentUpon>CreatePost.xaml</DependentUpon>
     </Compile>
@@ -203,15 +200,6 @@
     <Content Include="Images\appbar.next.png" />
     <Content Include="Images\cyclign.png" />
     <Content Include="Images\farwaAshraf.gif" />
-    <Content Include="Images\kinectbk2.jpg" />
-    <Content Include="Images\kinectbk3.jpg" />
-    <Content Include="Images\kinectbk4.jpg" />
-    <Content Include="Images\kinectbk5.jpg" />
-    <Content Include="Images\kinectbk6.jpg" />
-    <Content Include="Images\kinectbk6.png" />
-    <Content Include="Images\kinectbk7.jpg" />
-    <Content Include="Images\kinectbk8.jpg" />
-    <Content Include="Images\kinectbk9.png" />
     <Content Include="Images\kintestor.jpg" />
     <Content Include="Images\leaderboard.png" />
     <Content Include="Images\running.png" />
@@ -306,10 +294,6 @@
     <Page Include="SampleData\SampleDataParks\SampleDataParks.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\AppSettings.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CreatePost.xaml">
       <SubType>Designer</SubType>
